@@ -21,10 +21,10 @@ on:
 env:
   rootFolder: './'
   adfId: '/subscriptions/7386cd39-b109-4cc6-bb80-bf12413d0a99/resourceGroups/validation-rg/providers/Microsoft.DataFactory/factories/ghBranchingPoC'
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    working-directory: ${{ env.rootFolder }}
     steps:
       - name: Checkout the code
         uses: actions/checkout@main
@@ -34,14 +34,17 @@ jobs:
           node-version: 14
 
       - name: Install NPM package
+        working-directory: ${{ env.rootFolder }}
         run: |
           npm install
         
       - name: Validate ADF resources
+        working-directory: ${{ env.rootFolder }}
         run: |
           run build validate ${{ env.rootFolder }} ${{ env.adfId }}
         
       - name: Export ADF resources
+        working-directory: ${{ env.rootFolder }}
         run: |
           run build export ${{ env.rootFolder }} ${{ env.adfId }}
         
