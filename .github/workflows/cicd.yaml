@@ -1,4 +1,4 @@
-name: 'ASEv3 Terraform'
+name: 'ADF CI Test'
 
 on:
   workflow_dispatch:
