@@ -23,7 +23,7 @@ steps:
 - task: Npm@1
   inputs:
     command: 'install'
-    workingDir: '$(Build.Repository.LocalPath)/$( variables.rootFolder )'
+    workingDir: "$(Build.Repository.LocalPath)/$( variables.rootFolder )"
     verbose: true
   displayName: 'Install npm package'
 
@@ -33,7 +33,7 @@ steps:
 - task: Npm@1
   inputs:
     command: 'custom'
-    workingDir: '$(Build.Repository.LocalPath)/<folder-of-the-package.json-file>' #replace with the package.json folder
+    workingDir: "$(Build.Repository.LocalPath)/$( variables.rootFolder )"
     customCommand: 'run build validate $(Build.Repository.LocalPath)/$( variables.rootFolder ) $( variables.adfId )'
   displayName: 'Validate'
 
@@ -43,7 +43,7 @@ steps:
 - task: Npm@1
   inputs:
     command: 'custom'
-    workingDir: '$(Build.Repository.LocalPath)/<folder-of-the-package.json-file>' #replace with the package.json folder
+    workingDir: "$(Build.Repository.LocalPath)/$( variables.rootFolder )"
     customCommand: 'run build export $(Build.Repository.LocalPath)/$( variables.rootFolder ) $( variables.adfId ) "ArmTemplate"'
   displayName: 'Validate and Generate ARM template'
 
