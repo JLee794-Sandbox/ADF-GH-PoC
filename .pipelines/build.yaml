@@ -1,6 +1,7 @@
 
 trigger:
 - main #collaboration branch
+- feature/test
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -23,7 +24,7 @@ steps:
 - task: Npm@1
   inputs:
     command: 'install'
-    workingDir: '$(Build.Repository.LocalPath)/$( variables.rootFolder )'
+    workingDir: "$(Build.Repository.LocalPath)/${{ variables.rootFolder }}"
     verbose: true
   displayName: 'Install npm package'
 
@@ -33,8 +34,8 @@ steps:
 - task: Npm@1
   inputs:
     command: 'custom'
-    workingDir: '$(Build.Repository.LocalPath)/<folder-of-the-package.json-file>' #replace with the package.json folder
-    customCommand: 'run build validate $(Build.Repository.LocalPath)/$( variables.rootFolder ) $( variables.adfId )'
+    workingDir: "$(Build.Repository.LocalPath)/${{ variables.rootFolder }}"
+    customCommand: 'run build validate $(Build.Repository.LocalPath)/${{ variables.rootFolder }} ${{ variables.adfId }}'
   displayName: 'Validate'
 
 # Validate and then generate the ARM template into the destination folder, which is the same as selecting "Publish" from the UX.
@@ -43,14 +44,14 @@ steps:
 - task: Npm@1
   inputs:
     command: 'custom'
-    workingDir: '$(Build.Repository.LocalPath)/<folder-of-the-package.json-file>' #replace with the package.json folder
-    customCommand: 'run build export $(Build.Repository.LocalPath)/$( variables.rootFolder ) $( variables.adfId ) "ArmTemplate"'
+    workingDir: "$(Build.Repository.LocalPath)/${{ variables.rootFolder }}"
+    customCommand: 'run build export $(Build.Repository.LocalPath)/${{ variables.rootFolder }} ${{ variables.adfId }} "ArmTemplate"'
   displayName: 'Validate and Generate ARM template'
 
 # Publish the artifact to be used as a source for a release pipeline.
 
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Build.Repository.LocalPath)/$( variables.rootFolder )/ArmTemplate' #replace with the package.json folder
+    targetPath: "$(Build.Repository.LocalPath)/${{ variables.rootFolder }}/ArmTemplate" #replace with the package.json folder
     artifact: 'ArmTemplates'
     publishLocation: 'pipeline'
