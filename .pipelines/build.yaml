@@ -7,10 +7,8 @@ pool:
 
 variables:
 - name: rootFolder
-  displayName: Root folder the ADF instance was configured with
   value: './'
 - name: adfId
-  displayName: Azure Data Factory resource ID
   value: '/subscriptions/7386cd39-b109-4cc6-bb80-bf12413d0a99/resourceGroups/validation-rg/providers/Microsoft.DataFactory/factories/ghBranchingPoC'
 
 steps:
