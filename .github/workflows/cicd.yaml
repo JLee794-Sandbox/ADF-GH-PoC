@@ -36,17 +36,17 @@ jobs:
       - name: Install NPM package
         working-directory: ${{ env.rootFolder }}
         run: |
-          npm install
+          npm install 
         
       - name: Validate ADF resources
         working-directory: ${{ env.rootFolder }}
         run: |
-          run build validate ${{ env.rootFolder }} ${{ env.adfId }}
+          npm run build validate ${{ env.rootFolder }} ${{ env.adfId }}
         
       - name: Export ADF resources
         working-directory: ${{ env.rootFolder }}
         run: |
-          run build export ${{ env.rootFolder }} ${{ env.adfId }}
+          npm run build export ${{ env.rootFolder }} ${{ env.adfId }}
         
 
 
