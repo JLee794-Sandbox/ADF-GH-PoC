@@ -36,8 +36,9 @@ jobs:
     steps:
       - name: Install ADF dependencies
         run: |
-          Install-Module Az.DataFactory -MinimumVersion "1.10.0" -Force
+          Install-Module -Name Az.DataFactory -MinimumVersion "1.10.0" -Force
           Install-Module -Name "azure.datafactory.tools" -Force
+          Install-Module -Name Az.Resource -Force
           Import-Module -Name "azure.datafactory.tools" -Force
 
       - uses: actions/checkout@v3
@@ -62,9 +63,8 @@ jobs:
             $props = $jsonContent.properties
 
             if ($props.pipelines  | where { $_.pipelineReference.referenceName -eq $targetPipeline }) {
-                Write-Host -ForegroundColor Green "$($_.Name) contains $targetPipeline"
-                # $triggerArr += $content | ConvertFrom-Json | select name
-                Write-Host -ForegroundColor Yellow "Adding trigger: $triggerName to ADF publish options for stop/start"
+                Write-Output "::debug::$($_.Name) contains $targetPipeline"
+                Write-Output "::notice::Adding trigger: $triggerName to ADF publish options for stop/start"
                 $opt.Includes.Add("trigger.$triggerName", "")
             }
             else {
