@@ -24,7 +24,7 @@ env:
   rootDirectoryName: 'root'
   triggerDirectoryName: 'trigger'
   adfName: 'sqlplayer-poc'
-  adfResourceGroup: 'adf-sandbox'
+  adfResourceGroup: 'mgb-adf-sandbox'
   location: 'eastus'
 
 jobs:
