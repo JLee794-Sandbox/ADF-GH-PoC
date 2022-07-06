@@ -40,6 +40,10 @@ jobs:
           Install-Module -Name "azure.datafactory.tools" -Force
           Import-Module -Name "azure.datafactory.tools" -Force
 
+      - uses: actions/checkout@v3
+        name: Checkout main
+        with:
+          ref: main
       - name: Initialize ADF Tools
         run: |
           $opt = New-AdfPublishOption
