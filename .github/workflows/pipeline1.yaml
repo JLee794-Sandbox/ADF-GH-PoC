@@ -39,6 +39,7 @@ jobs:
           Install-Module Az.DataFactory -MinimumVersion "1.10.0" -Force
           Install-Module -Name "azure.datafactory.tools" -Force
           Import-Module -Name "azure.datafactory.tools" -Force
+
       - name: Initialize ADF Tools
         run: |
           $opt = New-AdfPublishOption
@@ -47,8 +48,9 @@ jobs:
 
       - name: Retrieve relevant triggers
         run: |
+          ls
 
-          Get-ChildItem $env:rootDirectoryName/$env:triggerDirectoryName -Filter *.json |
+          Get-ChildItem "$($env:rootDirectoryName)/$($env:triggerDirectoryName)" -Filter *.json |
           Foreach-Object {
             $content = Get-Content $_.FullName
             $jsonContent = $content | ConvertFrom-Json
