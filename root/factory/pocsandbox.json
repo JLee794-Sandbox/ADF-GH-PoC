@@ -1,0 +1,9 @@
+{
+	"name": "pocsandbox",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "a94d7634-781b-4990-9f49-6197ad662643",
+		"tenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+	}
+}
