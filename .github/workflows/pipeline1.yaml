@@ -42,8 +42,8 @@ jobs:
       - name: Initialize ADF Tools
         run: |
           $opt = New-AdfPublishOption
-          $opt.StopStartTriggers = $env:StopStartTriggers
-          $opt.DoNotStopStartExcludedTriggers = $env:DoNotStopStartExcludedTriggers
+          $opt.StopStartTriggers = $true
+          $opt.DoNotStopStartExcludedTriggers = $true
 
       - name: Retrieve relevant triggers
         run: |
@@ -68,8 +68,15 @@ jobs:
       - name: Test and Validate
         run: |
           Test-AdfCode -RootFolder "$env:rootDirectoryName"
-
+    
+      - name: Login via Az module
+        uses: azure/login@v1
+        with:
+          creds: ${{secrets.AZURE_CREDENTIALS}}
+          enable-AzPSSession: true 
       - name: Publish to ADF
+        env:
+
         run: |
           Publish-AdfV2FromJson -RootFolder "$env:rootDirectoryName" `
             -ResourceGroupName "$env:adfResourceGroup" `
