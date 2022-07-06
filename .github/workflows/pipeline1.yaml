@@ -75,8 +75,6 @@ jobs:
           creds: ${{secrets.AZURE_CREDENTIALS}}
           enable-AzPSSession: true 
       - name: Publish to ADF
-        env:
-
         run: |
           Publish-AdfV2FromJson -RootFolder "$env:rootDirectoryName" `
             -ResourceGroupName "$env:adfResourceGroup" `
