@@ -1,3 +1,6 @@
-node_modules/
-ArmTemplate/
-downloads/
+
+# Azure Functions artifacts
+bin
+obj
+appsettings.json
+local.settings.json
