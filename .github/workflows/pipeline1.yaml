@@ -38,7 +38,7 @@ jobs:
         run: |
           Install-Module -Name Az.DataFactory -MinimumVersion "1.10.0" -Force
           Install-Module -Name "azure.datafactory.tools" -Force
-          Install-Module -Name Az.Resource -Force
+          Install-Module -Name Az.Resources -Force
           Import-Module -Name "azure.datafactory.tools" -Force
 
       - uses: actions/checkout@v3
